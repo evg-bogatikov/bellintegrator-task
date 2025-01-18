@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quote_db
+    username: quote_user
+    password: quote_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  application:
+    name: quote-service
+  main:
+    banner-mode: off
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
