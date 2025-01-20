@@ -17,6 +17,10 @@ class PostgresElvlRepository(
         return postgresElvlEntityRepository.findByIsin(isin)?.toDomain()
     }
 
+    override fun getElvlByIsinWithLock(isin: String): Elvl? {
+        return postgresElvlEntityRepository.findByIsinWithLock(isin)?.toDomain()
+    }
+
     @Transactional
     override fun saveElvl(elvl: Elvl) {
         val existingElvl = postgresElvlEntityRepository.findByIsin(elvl.isin)

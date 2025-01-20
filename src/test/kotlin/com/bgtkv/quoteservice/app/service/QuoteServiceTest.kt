@@ -37,7 +37,7 @@ class QuoteServiceTest {
  }
 
  @Nested
- inner class ProcessQuoteUseCase {
+ inner class ProcessQuote {
 
   @Test
   fun `should new quote and save as new elvl`() {
@@ -46,7 +46,7 @@ class QuoteServiceTest {
     bid = BigDecimal("100.2"),
     ask = BigDecimal("101.9")
    )
-   whenever(elvlRepository.getElvlByIsin(quote.isin)).thenReturn(null)
+   whenever(elvlRepository.getElvlByIsinWithLock(quote.isin)).thenReturn(null)
 
    quoteService.processQuote(quote)
 
@@ -66,7 +66,7 @@ class QuoteServiceTest {
     bid = BigDecimal("101.5"),
     ask = BigDecimal("102.0")
    )
-   whenever(elvlRepository.getElvlByIsin(quote.isin)).thenReturn(
+   whenever(elvlRepository.getElvlByIsinWithLock(quote.isin)).thenReturn(
     Elvl(ISIN_TEST_NAME_FIRST, BigDecimal("100.5"))
    )
 
@@ -87,7 +87,7 @@ class QuoteServiceTest {
     bid = null,
     ask = BigDecimal("99.0")
    )
-   whenever(elvlRepository.getElvlByIsin(quote.isin)).thenReturn(
+   whenever(elvlRepository.getElvlByIsinWithLock(quote.isin)).thenReturn(
     Elvl(ISIN_TEST_NAME_FIRST, BigDecimal("100.5"))
    )
 
